@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    let running = false;
     // Older browsers might not implement mediaDevices at all, so we set an empty object first
     if (navigator.mediaDevices === undefined) {
         navigator.mediaDevices = {};
@@ -14,15 +15,18 @@ $(document).ready(function() {
     biquadFilter.type = "lowshelf";
     const analyser = audioCtx.createAnalyser();
     analyser.minDecibels = -90;
-    analyser.maxDecibels = -10;
-    analyser.smoothingTimeConstant = 0.85;
+    analyser.maxDecibels = -20;
+    analyser.smoothingTimeConstant = 0.9;
     analyser.fftSize = 256;
     let bufferLength = analyser.frequencyBinCount;
     console.log(bufferLength);
     let dataArray = new Uint8Array(bufferLength);
 
     function stopRecording() {
-     audioCtx.suspend();
+        audioCtx.suspend().then(()=>{
+            running = false;
+        })
+
     }
 
     function startRecording(){
@@ -37,6 +41,7 @@ $(document).ready(function() {
             // Success callback
                 .then(function(stream) {
                     console.log("Success");
+                    running = true;
                     audioCtx.resume().then(()=> {
                         const microphone = audioCtx.createMediaStreamSource(stream);
                         // microphone.connect(analyser);
@@ -58,18 +63,18 @@ $(document).ready(function() {
     }
 
     const notes = {
-        11:"C", 22:"C",44:"C", 45:"C", 78:"C", 112:"C",
-        23:"C#", 46:"C#", 47:"C#", 48:"C#", 83:"C#", 119:"C#",
-        12:"D", 73:"D", 24:"D", 49:"D", 50:"D", 51:"D", 74:"D", 75:"D",
-        26:"D#", 25:"D#", 53:"D#", 54:"D#",
-        13:"E",27:"E", 28:"E", 55:"E", 56:"E",
-        14:"F",29:"F", 30:"F", 58:"F",59:"F", 60:"F", 61:"F",
-        15:"F#",31:"F#", 32:"F#", 62:"F#", 63 :"F#", 141:"F#",
-        16:"G", 33:"G",66:"G",  67:"G", 92:"G",
-        17:"G#", 34:"G#",35:"G#", 36:"G#", 69:"G#",68:"G#", 101:"G#",
-        9:"A", 18:"A", 19:"A", 37:"A", 38:"A", 70:"A", 71:"A", 85:"A", 94:"A",
-        10:"A#", 20:"A#",39:"A#", 40:"A#", 72:"A#",79:"A#",80:"A#",89:"A#",90:"A#", 100:"A#", 131:"A#",132:"A#",
-        21:"B",41:"B",  42:"B", 43:"B", 84:"B", 106:"B"
+        11:"C", 22:"C",43:"C", 44:"C", 45:"C", 78:"C", 112:"C", 202:"C", 248:"C",
+        23:"C#", 46:"C#", 47:"C#", 48:"C#", 83:"C#",95:"C#", 119:"C#",
+        12:"D", 73:"D",87:"D",88:"D", 24:"D",25:"D", 49:"D", 50:"D", 51:"D", 74:"D",227:"D",240:"D",266:"D",
+        26:"D#", 27:"D#", 52:"D#", 53:"D#", 93:"D#",106:"D#",
+        13:"E", 28:"E", 54:"E", 55:"E", 56:"E",57:"E",99:"E", 199:"E", 84:"E",
+        14:"F",29:"F", 30:"F", 58:"F",59:"F", 60:"F", 61:"F",149:"F",
+        15:"F#",31:"F#", 32:"F#", 62:"F#",63:"F#", 64 :"F#", 141:"F#",
+        16:"G", 33:"G",34:"G",65:"G",66:"G",  67:"G", 92:"G",117:"G", 185:"G", 203:"G", 255:"G",
+        17:"G#", 35:"G#", 36:"G#", 69:"G#",68:"G#", 75:"G#",76:"G#", 101:"G#",142:"G#",
+        9:"A", 18:"A", 19:"A", 37:"A", 38:"A", 70:"A", 71:"A", 85:"A", 94:"A",150:"A",317:"A",318:"A",
+        10:"A#", 20:"A#",39:"A#", 40:"A#", 72:"A#",79:"A#",80:"A#",89:"A#",90:"A#", 131:"A#",132:"A#",
+        21:"B", 41:"B", 42:"B",86:"B",115:"B", 116:"B", 125:"B",126:"B",136:"B",137:"B",252:"B",253:"B",
     };
 
 function v(){
@@ -88,8 +93,8 @@ function v(){
 
     let drawVisual;
     const draw1 = function() {
-
-        drawVisual = requestAnimationFrame(draw1);
+        if (running)
+            drawVisual = requestAnimationFrame(draw1);
         analyser.getByteFrequencyData(dataArray);
         analyser.getFloatFrequencyData(fDataArray);
         // console.log(getMax(fDataArray));
@@ -106,7 +111,7 @@ function v(){
         let barHeight;
         let x = 0;
 
-        for (var i = 0; i < bufferLength; i++) {
+        for (let i = 0; i < bufferLength; i++) {
             barHeight = dataArray[i];
 
             canvasCtx.fillStyle = 'rgb(' + (barHeight + 100) + ',50,50)';
