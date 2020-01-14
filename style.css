@@ -7,3 +7,8 @@ button{
     padding:2em;
 
 }
+
+#congrats {
+    padding: 2em;
+    visibility: hidden;
+}

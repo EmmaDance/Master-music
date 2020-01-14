@@ -66,13 +66,15 @@ $(document).ready(function() {
     const biquadFilter = audioCtx.createBiquadFilter();
     biquadFilter.type = "lowshelf";
     const analyser = audioCtx.createAnalyser();
-    analyser.minDecibels = -90;
-    analyser.maxDecibels = -20;
-    analyser.smoothingTimeConstant = 0.89;
-    analyser.fftSize = 256;
+    analyser.minDecibels = -100;
+    analyser.maxDecibels = -30;
+    analyser.smoothingTimeConstant = 0.92;
     let bufferLength = analyser.frequencyBinCount;
     console.log(bufferLength);
     let dataArray = new Uint8Array(bufferLength);
+
+    // Audio Buffer - to access the raw PCM data (in case we need it)
+    // let myArrayBuffer = audioCtx.createBuffer(2, audioCtx.sampleRate, audioCtx.sampleRate);
 
     function stopRecording() {
         audioCtx.suspend().then(()=>{
@@ -86,32 +88,23 @@ $(document).ready(function() {
             console.log('getUserMedia supported.');
             navigator.mediaDevices.getUserMedia (
                 // constraints - only audio needed for this app
-                {
-                    audio: true
-                })
-
+                {audio: true})
             // Success callback
                 .then(function(stream) {
                     console.log("Success");
                     running = true;
                     audioCtx.resume().then(()=> {
                         const microphone = audioCtx.createMediaStreamSource(stream);
-                        microphone.connect(analyser);
-                        // microphone.connect(biquadFilter);
-                        // biquadFilter.connect(analyser);
+                        // microphone.connect(analyser);
+                        microphone.connect(biquadFilter);
+                        biquadFilter.connect(analyser);
                         // analyser.connect(audioCtx.destination);
                         v();
                     });
                 })
-
                 // Error callback
-                .catch(function(err) {
-                        console.log('The following getUserMedia error occurred: ' + err);
-                    }
-                );
-        } else {
-            console.log('getUserMedia not supported on your browser!');
-        }
+                .catch(function(err) {console.log('The following getUserMedia error occurred: ' + err);});
+        } else {console.log('getUserMedia not supported on your browser!');}
     }
 
     const notes = {
@@ -134,13 +127,11 @@ $(document).ready(function() {
         const WIDTH = 300;
         analyser.fftSize = 4096;
         bufferLength = analyser.frequencyBinCount;
-        // console.log(bufferLength);
         dataArray = new Uint8Array(bufferLength);
         const fDataArray = new Float32Array(bufferLength);
 
         const canvas = document.getElementById('canvas');
         const canvasCtx = canvas.getContext('2d');
-        // console.log(canvasCtx);
         canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
 
         let drawVisual;
@@ -151,7 +142,6 @@ $(document).ready(function() {
             analyser.getFloatFrequencyData(fDataArray);
             // console.log(getMax(fDataArray));
             // console.log(getMax(dataArray));
-            // console.log("freq " + getIndexOfMax(dataArray));
             let f = getIndexOfMax(fDataArray);
             console.log("freq " + f);
             console.log(notes[f]);
@@ -160,10 +150,11 @@ $(document).ready(function() {
             if(notes[f]===song[crt]){
                 crt_song.append(" " + notes[f]);
                 crt++;
-                if (crt >= song.length)
+                if (crt >= song.length){
+                    $("#congrats").css("visibility","visible");
                     stopRecording();
+                }
             }
-
 
             canvasCtx.fillStyle = 'rgb(0, 0, 0)';
             canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
