@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6bfee6f-1c72-4c78-8f5f-8204c18eb8b4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/frequency_map.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -38,13 +36,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="319" column="64" lean-forward="true" selection-start-line="319" selection-start-column="64" selection-end-line="319" selection-end-column="64" />
+            <state relative-caret-position="228">
+              <caret line="295" column="17" selection-start-line="295" selection-start-column="17" selection-end-line="295" selection-end-column="17" />
               <folding>
-                <element signature="e#641#1434#0" />
-                <element signature="e#2719#2805#0" />
-                <element signature="e#2836#3933#0" />
-                <element signature="e#3953#5019#0" />
+                <element signature="e#2759#3710#0" />
+                <element signature="e#3907#3995#0" />
+                <element signature="e#4027#5242#0" />
+                <element signature="e#5263#7315#0" />
+                <element signature="e#7367#7840#0" />
+                <element signature="e#7859#10132#0" />
+                <element signature="e#10203#10750#0" />
               </folding>
             </state>
           </provider>
@@ -188,17 +189,18 @@
       <workItem from="1581186773197" duration="1210000" />
       <workItem from="1581329243069" duration="2484000" />
       <workItem from="1581332085553" duration="5845000" />
+      <workItem from="1581439470617" duration="2742000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61125000" />
+    <option name="totallyTimeSpent" value="63867000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10839392" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11302049" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -273,20 +275,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/song.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -301,26 +289,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frequency_map.csv">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="12" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+    <entry file="file://$PROJECT_DIR$/frequency_map.csv" />
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="319" column="64" lean-forward="true" selection-start-line="319" selection-start-column="64" selection-end-line="319" selection-end-column="64" />
+        <state relative-caret-position="228">
+          <caret line="295" column="17" selection-start-line="295" selection-start-column="17" selection-end-line="295" selection-end-column="17" />
           <folding>
-            <element signature="e#641#1434#0" />
-            <element signature="e#2719#2805#0" />
-            <element signature="e#2836#3933#0" />
-            <element signature="e#3953#5019#0" />
+            <element signature="e#2759#3710#0" />
+            <element signature="e#3907#3995#0" />
+            <element signature="e#4027#5242#0" />
+            <element signature="e#5263#7315#0" />
+            <element signature="e#7367#7840#0" />
+            <element signature="e#7859#10132#0" />
+            <element signature="e#10203#10750#0" />
           </folding>
         </state>
       </provider>

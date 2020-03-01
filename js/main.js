@@ -18,9 +18,9 @@ $(document).ready(function () {
 
 
     function getSong() {
-        // let notes = "b c c c c c c c a a b c c c b c c b a a f";
-        let notes = "c c d c f e c c d c g f c c c a f e d b b a f g f";
-        notes = notes.toUpperCase();
+        // let notes = "c c d c f e c c d c g f c c c a f e d b b a f g f";
+        let notes = "C4 C4 D4 C4 F4 E4 C4 C4 D4 C4 G4 F4 C4 C4 C5 A4 F4 E4 D4 B4 B4 A4 F4 G4 F4";
+        // notes = notes.toUpperCase();
         let newNotes = [];
         let prev = {"A": "G", "B": "A", "C": "B", "D": "C", "E": "D", "F": "E", "G": "F",};
         // let flats = "a b d e";
@@ -32,8 +32,8 @@ $(document).ready(function () {
         console.log(notes);
         for (let note of notes) {
             console.log(note);
-            if (flats.includes(note)) {
-                note = prev[note] + "#";
+            if (flats.includes(note[0])) {
+                note = prev[note[0]] + "#" + note[1];
             }
             newNotes.push(note);
         }
@@ -73,7 +73,7 @@ $(document).ready(function () {
     // only useful for getByteFrequencyData
     // analyser.minDecibels = -70;
     // analyser.maxDecibels = -10;
-    analyser.smoothingTimeConstant = 0.89;
+    analyser.smoothingTimeConstant = 0.9;
     let bufferLength = analyser.frequencyBinCount;
     console.log(bufferLength);
     let dataArray = new Uint8Array(bufferLength);
@@ -324,12 +324,15 @@ $(document).ready(function () {
             console.log(min);
             console.log(max);
             console.log(frequency);
-            console.log(notes[frequency]);
+            let crtNote = notes[frequency];
+            console.log(crtNote);
             // console.log(notes1[f]);
-            $("#note").text(notes1[f]);
+            // $("#note").text(notes1[f]);
+            $("#note").text(crtNote);
 
-            if (notes1[f] === song[crt]) {
-                crt_song.append(" " + notes1[f]);
+            // if (notes1[f] === song[crt]) {
+            if (crtNote === song[crt]) {
+                crt_song.append(" " + crtNote);
                 crt++;
                 if (crt >= song.length) {
                     $("#congrats").css("visibility", "visible");
@@ -347,7 +350,7 @@ $(document).ready(function () {
             for (let i = 0; i < bufferLength; i++) {
                 barHeight = dataArray[i];
 
-                canvasCtx.fillStyle = 'rgb(' + (barHeight + 100) + ',100,100)';
+                canvasCtx.fillStyle = 'rgb(' + (barHeight + 100) + ',255,255)';
                 canvasCtx.fillRect(x, HEIGHT - barHeight / 2, barWidth, barHeight / 2);
 
                 x += barWidth + 1;
