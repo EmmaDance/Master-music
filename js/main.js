@@ -1,20 +1,4 @@
 $(document).ready(function () {
-    // const fs = require('fs');
-    // function readSong() {
-    //     let notes = [];
-    //     let prev = {"A":"G", "B":"A","C":"B","D":"C","E":"D","F":"E","G":"F",};
-    //     fs.readFile('song.txt', 'utf-8', (err, data) => {
-    //         if (err) throw err;
-    //         const alterations = data[0].split(" ");
-    //         notes = data[1].split(" ");
-    //         for (let note of notes){
-    //             if (note in alterations){
-    //                 note = prev[note] + "#";
-    //             }
-    //         }
-    //     });
-    //     return notes;
-    // }
 
 
     function getSong() {
@@ -70,9 +54,7 @@ $(document).ready(function () {
     const biquadFilter = audioCtx.createBiquadFilter();
     biquadFilter.type = "lowshelf";
     const analyser = audioCtx.createAnalyser();
-    // only useful for getByteFrequencyData
-    // analyser.minDecibels = -70;
-    // analyser.maxDecibels = -10;
+
     analyser.smoothingTimeConstant = 0.9;
     let bufferLength = analyser.frequencyBinCount;
     console.log(bufferLength);
@@ -133,7 +115,7 @@ $(document).ready(function () {
             navigator.mediaDevices.getUserMedia(
                 // constraints - only audio needed for this app
                 {audio: true})
-            // Success callback
+                // Success callback
                 .then(function (stream) {
                     console.log("Success");
                     running = true;
@@ -156,125 +138,6 @@ $(document).ready(function () {
         }
     }
 
-    const notes1 = {
-        11: "C",
-        22: "C",
-        43: "C",
-        44: "C",
-        45: "C",
-        78: "C",
-        112: "C",
-        202: "C",
-        248: "C",
-        23: "C#",
-        46: "C#",
-        47: "C#",
-        48: "C#",
-        83: "C#",
-        95: "C#",
-        119: "C#",
-        12: "D",
-        87: "D",
-        88: "D",
-        24: "D",
-        25: "D",
-        49: "D",
-        50: "D",
-        51: "D",
-        227: "D",
-        240: "D",
-        266: "D",
-        26: "D#",
-        27: "D#",
-        52: "D#",
-        53: "D#",
-        93: "D#",
-        106: "D#",
-        13: "E",
-        28: "E",
-        54: "E",
-        55: "E",
-        56: "E",
-        57: "E",
-        99: "E",
-        199: "E",
-        84: "E",
-        14: "F",
-        29: "F",
-        30: "F",
-        58: "F",
-        59: "F",
-        60: "F",
-        61: "F",
-        149: "F",
-        15: "F#",
-        31: "F#",
-        32: "F#",
-        62: "F#",
-        63: "F#",
-        64: "F#",
-        141: "F#",
-        16: "G",
-        33: "G",
-        34: "G",
-        65: "G",
-        66: "G",
-        67: "G",
-        92: "G",
-        117: "G",
-        133: "G",
-        134: "G",
-        185: "G",
-        203: "G",
-        255: "G",
-        17: "G#",
-        35: "G#",
-        36: "G#",
-        69: "G#",
-        68: "G#",
-        75: "G#",
-        76: "G#",
-        101: "G#",
-        142: "G#",
-        9: "A",
-        18: "A",
-        19: "A",
-        37: "A",
-        38: "A",
-        70: "A",
-        71: "A",
-        85: "A",
-        94: "A",
-        150: "A",
-        189: "A",
-        317: "A",
-        318: "A",
-        10: "A#",
-        20: "A#",
-        39: "A#",
-        40: "A#",
-        72: "A#",
-        73: "A#",
-        79: "A#",
-        80: "A#",
-        89: "A#",
-        90: "A#",
-        131: "A#",
-        132: "A#",
-        21: "B",
-        41: "B",
-        42: "B",
-        86: "B",
-        115: "B",
-        116: "B",
-        125: "B",
-        126: "B",
-        136: "B",
-        137: "B",
-        252: "B",
-        253: "B",
-    };
-
     function binarySearch(frequencies, min, max) {
         var size = Object.keys(frequencies).length;
         let start = 0, end = size - 1;
@@ -283,14 +146,44 @@ $(document).ready(function () {
             let elem = frequencies[mid];
             if (elem >= min && elem <= max)
                 return elem;
-            else if (elem < min){
+            else if (elem < min) {
                 start = mid + 1;
-            }
-            else {
+            } else {
                 end = mid - 1;
             }
         }
         return "idk";
+    }
+
+    function zcr(signal) {
+        let sum = 0;
+        for (let i = 0; i < signal.length; i++) {
+            sum += parseInt(signal[i], 10); //don't forget to add the base
+        }
+
+        let avg = sum / signal.length;
+        console.log("AVG = ", avg);
+        let zcr = 0;
+        // should be mean value, not 0
+        let zero = avg;
+        for (let i = 1; i < signal.length; i++) {
+            if ((signal[i - 1] >= zero && signal[i] < zero) ||
+                (signal[i - 1] < zero && signal[i] >= zero)) {
+                zcr++;
+            }
+        }
+
+        return zcr;
+
+    }
+
+    function energy(signal) {
+        let energy = 0;
+        for (let i = 0; i < signal.length; i++) {
+            energy += Math.pow(Math.abs(signal[i]), 2);
+        }
+
+        return energy / 1000;
     }
 
     function v() {
@@ -310,8 +203,19 @@ $(document).ready(function () {
                 drawVisual = requestAnimationFrame(draw1);
             analyser.getByteFrequencyData(dataArray);
             analyser.getFloatFrequencyData(fDataArray);
-            // console.log(getMax(fDataArray));
-            // console.log(getMax(dataArray));
+
+
+            let z = zcr(fDataArray);
+            console.log("ZCR = ", z);
+            // let threshold = 100;
+            // if (z>threshold)
+            //     return;
+
+            let e = energy(dataArray);
+            console.log("ENERGY = ", e);
+            if (e < 500)
+                return;
+
             let f = getIndexOfMax(fDataArray);
             // console.log("freq " + f);
             // f = index
@@ -365,7 +269,7 @@ $(document).ready(function () {
     }
 
 // Get the highest 2 spikes and return the lowest one
-    function getIndexOfMax(data) {
+    function getIndexOfMax2(data) {
         let max, smax, k1 = 0, k2 = 0;
         max = data[0] > data[1] ? data[0] : data[1];
         smax = data[0] > data[1] ? data[1] : data[0];
@@ -385,6 +289,40 @@ $(document).ready(function () {
         }
 
         return k1 > k2 ? k2 : k1;
+    }
+
+    function getMaxAndIndex(data) {
+        let max, k = 0;
+        max = data[0] > data[1] ? data[0] : data[1];
+        for (let i = 2; i < data.length; i++) {
+            let val = data[i];
+            if (val > max) {
+                max = val;
+                k = i;
+            }
+        }
+        return{"index": k, "value": data[k]};
+    }
+
+    function getNMax(data, n) {
+        let spikes = [];
+        for (let i = 0; i < n; i++) {
+            let res = getMaxAndIndex(data);
+            let idx = res.index;
+            data[idx] = -Infinity;
+            console.log("res = ",res);
+            // let max = res.value;
+            spikes.push(idx);
+        }
+        console.log("getNMax: ", spikes);
+        return spikes;
+    }
+
+    function getIndexOfMax(data) {
+        let spikes = getNMax(data,5);
+        spikes.sort();
+        console.log("getIndexOfMax: ",spikes[0]);
+        return spikes[0];
     }
 
     function enumerateDevices() {

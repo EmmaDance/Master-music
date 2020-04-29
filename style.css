@@ -3,6 +3,9 @@ button{
     padding: 1.1em;
 }
 
+#init-song{
+}
+
 #note{
     padding:2em;
 
@@ -11,4 +14,18 @@ button{
 #congrats {
     padding: 2em;
     visibility: hidden;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#sheet {
+
+}
+
+#left{
+    flex-grow: 2;
 }
