@@ -1,6 +1,6 @@
 function playKeyboard(){
 
-	let pressColor = '#1BC0EA'; //color when key is pressed
+	let pressColor = '#494949'; //color when key is pressed
 
 
 	var isMobile = !!navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i);
@@ -179,9 +179,9 @@ function playKeyboard(){
 	var iWhite = 0;
 	var notes = __audioSynth._notes; //C, C#, D....A#, B
 
-	for(var i=-2;i<=1;i++) {
+	for(let i=-1;i<=1;i++) {
 		for(var n in notes) {
-			if(n[2]!='b') {
+			if(n[2]!=='b') {
 				var thisKey = document.createElement('div');
 				if(n.length>1) { //adding sharp sign makes 2 characters
 					thisKey.className = 'black key'; //2 classes

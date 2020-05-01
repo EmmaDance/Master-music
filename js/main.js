@@ -1,6 +1,9 @@
 $(document).ready(function () {
+    $('.file-upload').file_upload();
 
-
+    function file_upload(){
+        alert("You uploaded a file");
+    }
     function getSong() {
         // let notes = "c c d c f e c c d c g f c c c a f e d b b a f g f";
         let notes = "C4 C4 D4 C4 F4 E4 C4 C4 D4 C4 G4 F4 C4 C4 C5 A4 F4 E4 D4 B4 B4 A4 F4 G4 F4";
@@ -27,8 +30,6 @@ $(document).ready(function () {
     }
 
     let running = false;
-
-    // let song = readSong();
     let song = getSong();
     let init_song = $("#init-song");
     for (let note of song)
@@ -51,8 +52,8 @@ $(document).ready(function () {
 
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     audioCtx.sampleRate = 44100;
-    const biquadFilter = audioCtx.createBiquadFilter();
-    biquadFilter.type = "lowshelf";
+    // const biquadFilter = audioCtx.createBiquadFilter();
+    // biquadFilter.type = "lowshelf";
     const analyser = audioCtx.createAnalyser();
 
     analyser.smoothingTimeConstant = 0.9;
@@ -122,11 +123,11 @@ $(document).ready(function () {
                     mapFrequencies(notes, frequencies);
                     audioCtx.resume().then(() => {
                         const microphone = audioCtx.createMediaStreamSource(stream);
-                        // microphone.connect(analyser);
-                        microphone.connect(biquadFilter);
-                        biquadFilter.connect(analyser);
+                        microphone.connect(analyser);
+                        // microphone.connect(biquadFilter);
+                        // biquadFilter.connect(analyser);
                         // analyser.connect(audioCtx.destination);
-                        v();
+                        start();
                     });
                 })
                 // Error callback
@@ -186,7 +187,7 @@ $(document).ready(function () {
         return energy / 1000;
     }
 
-    function v() {
+    function start() {
         const HEIGHT = 100;
         const WIDTH = 300;
         bufferLength = analyser.frequencyBinCount;
@@ -196,11 +197,13 @@ $(document).ready(function () {
         const canvas = document.getElementById('canvas');
         const canvasCtx = canvas.getContext('2d');
         canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
+        let len = 0;
+        let note = "";
 
         let drawVisual;
-        const draw1 = function () {
+        const frame = function () {
             if (running)
-                drawVisual = requestAnimationFrame(draw1);
+                drawVisual = requestAnimationFrame(frame);
             analyser.getByteFrequencyData(dataArray);
             analyser.getFloatFrequencyData(fDataArray);
 
@@ -216,25 +219,32 @@ $(document).ready(function () {
             if (e < 500)
                 return;
 
-            let f = getIndexOfMax(fDataArray);
-            // console.log("freq " + f);
-            // f = index
-            let min = f * bandSize;
+            let indexOfMax = getIndexOfMax(fDataArray);
+            let min = indexOfMax * bandSize;
             let max = min + bandSize;
             let frequency = binarySearch(frequencies, min, max);
             console.log("NEW FRAME");
-            console.log(f);
+            console.log(indexOfMax);
             console.log(bandSize);
             console.log(min);
             console.log(max);
             console.log(frequency);
             let crtNote = notes[frequency];
             console.log(crtNote);
-            // console.log(notes1[f]);
-            // $("#note").text(notes1[f]);
-            $("#note").text(crtNote);
 
-            // if (notes1[f] === song[crt]) {
+            if (crtNote === note){
+                len++;
+                if (len>3){
+                    // display the note
+                    $("#note").text(crtNote);
+                }
+            }
+            else {
+                len = 1;
+                note = crtNote;
+            }
+
+            // song finished
             if (crtNote === song[crt]) {
                 crt_song.append(" " + crtNote);
                 crt++;
@@ -244,23 +254,24 @@ $(document).ready(function () {
                 }
             }
 
-            canvasCtx.fillStyle = 'rgb(0, 0, 0)';
+            canvasCtx.fillStyle = 'rgb(255, 255, 255)';
             canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
 
-            let barWidth = (WIDTH / bufferLength) * 2.5;
+            let barWidth = (WIDTH / bufferLength) * 4;
             let barHeight;
             let x = 0;
 
             for (let i = 0; i < bufferLength; i++) {
                 barHeight = dataArray[i];
 
-                canvasCtx.fillStyle = 'rgb(' + (barHeight + 100) + ',255,255)';
+                // canvasCtx.fillStyle = 'rgb(0,0,' + (barHeight + 100) + ')';
+                canvasCtx.fillStyle = 'rgb(15,31,35)';
                 canvasCtx.fillRect(x, HEIGHT - barHeight / 2, barWidth, barHeight / 2);
 
                 x += barWidth + 1;
             }
         };
-        draw1();
+        frame();
     }
 
 
@@ -319,7 +330,7 @@ $(document).ready(function () {
     }
 
     function getIndexOfMax(data) {
-        let spikes = getNMax(data,5);
+        let spikes = getNMax(data,4);
         spikes.sort();
         console.log("getIndexOfMax: ",spikes[0]);
         return spikes[0];

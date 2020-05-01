@@ -6,24 +6,92 @@
     <!--<script data-main="js/main.js" src="js/require.js"></script>-->
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/main.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="js/audiosynth.js"></script>
+    <script src="js/playKeyboard.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dropzone.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <script src="js/dropzone.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+<header>
+    <h1 id="title">master <em>MUSIC</em></h1>
+</header>
 <main>
-<section id="left">
-<h3 id="init-song"> </h3>
-<h3 id="crt-song"> </h3>
-<h1 id="note">.</h1>
-<button id="start" >Start</button>
-<button id="stop">Stop</button>
-<br>
-<canvas id="canvas" width="300" height="100"></canvas>
-<h1 id="congrats"> Congratulations! You sang the whole song!</h1>
-</section>
-    <section>
 
-<img id="sheet" src="assets/sheet.jpg">
+    <section id="initialize">
+        <div class="card border-dark text-center">
+            <div class="card-body">
+                <h2 class="card-title">Get Started!</h2>
+                <p class="card-text">Upload a sheet music file to get started! Supported formats: *.musicxml and
+                    *.mxml. </p>
+                <!--                <button id="upload" type="button" class="btn btn-outline-dark"><h4>Upload <i class="fa fa-upload"></i></h4></button>-->
+                <form action="/file-upload"
+                      class="dropzone"
+                      id="upload-dropzone"></form>
+            </div>
+            <div class="card-footer text-muted">
+                Or choose a sample sheet music from <a href="#">here</a>.
+            </div>
+        </div>
+    </section>
+    <section id="navigation">
+        <nav>
+            <div class="nav nav-fill nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                   aria-controls="nav-home" aria-selected="true">Listen</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                   aria-controls="nav-profile" aria-selected="false">Learn the Melody</a>
+                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                   aria-controls="nav-contact" aria-selected="false">Master it</a>
+            </div>
+        </nav>
+    </section>
+    <section id="pages">
+
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <h2 class="page-title">Listen</h2>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <h2 class="page-title">Learn the Melody</h2>
+                <article id="pitch-recognition">
+                    <h3 id="init-song"></h3>
+                    <h3 id="crt-song"></h3>
+                    <h1 id="note"></h1>
+                    <button id="start" type="button" class="btn btn-outline-light"><h2>Start</h2></button>
+                    <button id="stop" type="button" class="btn btn-outline-dark"><h2>Stop</h2></button>
+                    <br>
+                    <canvas id="canvas" width="300" height="100"></canvas>
+                    <h1 id="congrats"> Congratulations! You sang the whole song!</h1>
+                </article>
+            </div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <h2 class="page-title">Master it</h2>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="kb">
+        <div ID="keyboard" class="keyboard-holder"></div>
+        <script type="text/javascript">playKeyboard()</script>
+    </section>
+    <section id="sheet-music-display">
+        <!--<img id="sheet" src="assets/sheet.jpg">-->
     </section>
 </main>
+
 </body>
 </html>
