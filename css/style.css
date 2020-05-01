@@ -1,45 +1,29 @@
 
-header{
+#header-container{
     position: relative;
     top:0;
     width: 100%;
     background-color: #6e6658;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    padding-right: 1em;
 }
 
 #title{
-    margin: 0;
     padding: 0.2em;
     color: whitesmoke;
-    text-align: right;
     font-family: "Cinzel Decorative", serif;
     font-size: 3.2em;
+    display: inline;
 }
 
-#initialize{
-    text-align: center;
-    display: none;
-}
-
-#navigation a{
-    color: #112d32;
-}
-
-.page-title{
-    color: white;
-    text-align: center;
-}
-
-#init-song{
-}
-
-#note{
-    padding:2em;
-
-}
-
-#congrats {
-    padding: 2em;
-    visibility: hidden;
+#logo{
+    display: inline-block;
+    max-width: 3.2em;
+    width: auto;
+    padding-left: 0.1em;
 }
 
 main {
@@ -49,12 +33,58 @@ main {
     padding: 2em;
 }
 
-#sheet {
+#initialize{
+    text-align: center;
+    padding: 1rem;
+    /*display: none;*/
+}
+
+#navigation {
+    padding: 1rem;
+}
+
+#navigation a{
+    font-size: 1.2em;
+    color: #112d32;
+}
+
+.page{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-title{
+    color: white;
+    text-align: center;
+}
+
+#page-listen {
+    text-align: center;
+}
+
+#audio-player{
+    padding: 1rem;
+}
+
+#page-learn{
 
 }
 
-#pitch-recognition{
-    flex-grow: 2;
+#note{
+    padding:0.5rem;
+    text-align: center;
+}
+#init-song{
+}
+
+#visualizer{
+    padding: 1rem;
+}
+
+#congrats {
+    visibility: hidden;
 }
 
 /**, *:before, *:after {*/
@@ -91,3 +121,12 @@ body {
 .white { background-color: #F2F2DE; color: #112d32; z-index: 0; text-shadow: 0px 1px 1px #88BDBC; }
 
 .keyboard-holder { margin: 30px auto; height: 200px; position:relative; user-select:none; -webkit-user-select:none;-moz-user-select:none;-o-user-select:none; }
+
+
+footer{
+    padding: 1rem;
+    text-align: center;
+    background-color: #6e6658;
+    color: white;
+    margin: 0;
+}

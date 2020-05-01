@@ -1,9 +1,5 @@
 $(document).ready(function () {
-    $('.file-upload').file_upload();
 
-    function file_upload(){
-        alert("You uploaded a file");
-    }
     function getSong() {
         // let notes = "c c d c f e c c d c g f c c c a f e d b b a f g f";
         let notes = "C4 C4 D4 C4 F4 E4 C4 C4 D4 C4 G4 F4 C4 C4 C5 A4 F4 E4 D4 B4 B4 A4 F4 G4 F4";

@@ -2,57 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6bfee6f-1c72-4c78-8f5f-8204c18eb8b4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/css/bootstrap-grid.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap-grid.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap-grid.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap-grid.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap-reboot.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap-reboot.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap-reboot.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap-reboot.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/dropzone.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/.tagconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/CONTRIBUTING.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/bower.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/component.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/dist/basic.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/dist/dropzone-amd-module.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/dist/dropzone.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/dist/dropzone.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/dist/dropzone.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/dist/min/basic.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/dist/min/dropzone-amd-module.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/dist/min/dropzone.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/dist/min/dropzone.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropzone-5.7.0/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/audiosynth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/bootstrap.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/bootstrap.bundle.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/bootstrap.bundle.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/bootstrap.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/bootstrap.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/dropzone.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/playKeyboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/music-logo-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/music-logo-1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/music-logo-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/music-logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/voice-o-matic.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +113,7 @@
       <workItem from="1586890491274" duration="1199000" />
       <workItem from="1588159988478" duration="4432000" />
       <workItem from="1588259914764" duration="517000" />
-      <workItem from="1588260457293" duration="12116000" />
+      <workItem from="1588260457293" duration="16322000" />
     </task>
     <servers />
   </component>

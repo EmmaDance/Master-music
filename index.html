@@ -26,7 +26,10 @@
 </head>
 <body>
 <header>
-    <h1 id="title">master <em>MUSIC</em></h1>
+    <section id="header-container">
+        <h1 id="title">master <em>MUSIC </em></h1>
+        <img id="logo" src="assets/logo.png">
+    </section>
 </header>
 <main>
 
@@ -62,24 +65,47 @@
 
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                <h2 class="page-title">Listen</h2>
+                <!--            page LISTEN -->
+                <section class="page" id="page-listen">
+<!--                    <h2 class="page-title">Listen</h2>-->
+                    <article id="audio-player">
+                        <audio controls>
+                            <source src="viper.mp3" type="audio/mp3">
+                            <source src="viper.ogg" type="audio/ogg">
+                            <p>Your browser doesn't support HTML5 audio. Here is a <a href="viper.mp3">link to the
+                                audio</a>
+                                instead.</p>
+                        </audio>
+                    </article>
+                    <article id="sheet-music-display">
+                        <img id="sheet" src="assets/sheet.jpg">
+                    </article>
+                </section>
             </div>
+            <!--            page LEARN -->
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                <h2 class="page-title">Learn the Melody</h2>
-                <article id="pitch-recognition">
-                    <h3 id="init-song"></h3>
-                    <h3 id="crt-song"></h3>
-                    <h1 id="note"></h1>
-                    <button id="start" type="button" class="btn btn-outline-light"><h2>Start</h2></button>
-                    <button id="stop" type="button" class="btn btn-outline-dark"><h2>Stop</h2></button>
-                    <br>
-                    <canvas id="canvas" width="300" height="100"></canvas>
-                    <h1 id="congrats"> Congratulations! You sang the whole song!</h1>
-                </article>
+                <section class="page" id="page-learn">
+<!--                    <h2 class="page-title">Learn the Melody</h2>-->
+                    <article id="notes">
+                        <h3 id="init-song"></h3>
+                        <h3 id="crt-song">-</h3>
+                        <h1 id="note">-</h1>
+                    </article>
+                        <article id="control-buttons">
+                            <button id="start" type="button" class="btn btn-outline-light"><h2>Start</h2></button>
+                            <button id="stop" type="button" class="btn btn-outline-dark"><h2>Stop</h2></button>
+                        </article>
+                        <article id="visualizer">
+                            <canvas id="canvas" width="300" height="100"></canvas>
+                        </article>
+                        <h1 id="congrats"> Congratulations! You sang the whole song!</h1>
+                </section>
             </div>
+            <!--            page MASTER -->
             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                <h2 class="page-title">Master it</h2>
-
+                <section class="page" id="page-master">
+<!--                    <h2 class="page-title">Master it</h2>-->
+                </section>
             </div>
         </div>
     </section>
@@ -88,10 +114,10 @@
         <div ID="keyboard" class="keyboard-holder"></div>
         <script type="text/javascript">playKeyboard()</script>
     </section>
-    <section id="sheet-music-display">
-        <!--<img id="sheet" src="assets/sheet.jpg">-->
-    </section>
-</main>
 
+</main>
+<footer>
+    <span>&copy Copyright 2020 Emanuela Dance<span>
+</footer>
 </body>
 </html>
