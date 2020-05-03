@@ -1,5 +1,63 @@
 $(document).ready(function () {
 
+    function readFile(input) {
+        let file = input.files[0];
+
+        let reader = new FileReader();
+
+        reader.readAsText(file);
+
+        reader.onload = function() {
+            // console.log(reader.result);
+            let osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay("div-sheet-music", {
+                autoResize: true,
+                backend: "svg",
+                drawingParameters: "allon",
+                pageFormat: "Endless"
+            });
+            let loadPromise = osmd.load(reader.result);
+            loadPromise.then(function(){
+                osmd.render();
+            });
+            $("#initialize").css("display","none");
+        };
+
+        reader.onerror = function() {
+            console.log(reader.error);
+        };
+
+    }
+
+    // sheet music
+    $("#upload-btn").on("click", function () {
+        let file = document.getElementById('file-input');
+        readFile(file);
+    });
+
+    // let loadPromise = osmd.load("https://drive.google.com/open?id=1WrfyjhurNg-SHowwOz41MGNtVTPJeIdU");
+
+    // // "upload-dropzone" is the camelized version of the HTML element's ID
+    // Dropzone.options.uploaddropzone = {
+    //     paramName: "sheet-music", // The name that will be used to transfer the file
+    //     maxFilesize: 10, // MB
+    //     accept: function(file, done) {
+    //         if (file.name === "justinbieber.jpg") {
+    //             done("Naha, you don't.");
+    //         }
+    //         else {
+    //             alert("The upload was successful!")
+    //             done(); }
+    //     }
+    // };
+    //
+    // Dropzone.options.uploaddropzone = {
+    //     init: function() {
+    //         this.on("addedfile", function(file) { alert("Added file."); });
+    //     }
+    // };
+
+
+
     function getSong() {
         // let notes = "c c d c f e c c d c g f c c c a f e d b b a f g f";
         let notes = "C4 C4 D4 C4 F4 E4 C4 C4 D4 C4 G4 F4 C4 C4 C5 A4 F4 E4 D4 B4 B4 A4 F4 G4 F4";
@@ -326,24 +384,24 @@ $(document).ready(function () {
     }
 
     function getIndexOfMax(data) {
-        let spikes = getNMax(data,4);
+        let spikes = getNMax(data,2);
         spikes.sort();
         console.log("getIndexOfMax: ",spikes[0]);
         return spikes[0];
     }
-
-    function enumerateDevices() {
-        navigator.mediaDevices.enumerateDevices()
-            .then(function (devices) {
-                devices.forEach(function (device) {
-                    console.log(device.kind + ": " + device.label +
-                        " id = " + device.deviceId);
-                });
-            })
-            .catch(function (err) {
-                console.log(err.name + ": " + err.message);
-            });
-    }
+    //
+    // function enumerateDevices() {
+    //     navigator.mediaDevices.enumerateDevices()
+    //         .then(function (devices) {
+    //             devices.forEach(function (device) {
+    //                 console.log(device.kind + ": " + device.label +
+    //                     " id = " + device.deviceId);
+    //             });
+    //         })
+    //         .catch(function (err) {
+    //             console.log(err.name + ": " + err.message);
+    //         });
+    // }
 
 
 });

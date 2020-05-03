@@ -8,7 +8,9 @@
     <script src="js/main.js"></script>
     <script src="js/audiosynth.js"></script>
     <script src="js/playKeyboard.js"></script>
+    <script src="js/bootstrap.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/dropzone.css">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -22,6 +24,8 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
     <script src="js/dropzone.js"></script>
+    <!--    Sheet Music-->
+    <script src="js/opensheetmusicdisplay.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -32,7 +36,6 @@
     </section>
 </header>
 <main>
-
     <section id="initialize">
         <div class="card border-dark text-center">
             <div class="card-body">
@@ -40,9 +43,14 @@
                 <p class="card-text">Upload a sheet music file to get started! Supported formats: *.musicxml and
                     *.mxml. </p>
                 <!--                <button id="upload" type="button" class="btn btn-outline-dark"><h4>Upload <i class="fa fa-upload"></i></h4></button>-->
+                    <form>
+                    <input id="file-input" name="file-input" type="file">
+                    <input id="upload-btn" type="button" class="btn btn-outline-dark" value="Upload">
+                </form>
                 <form action="/file-upload"
                       class="dropzone"
-                      id="upload-dropzone"></form>
+                      id="uploaddropzone"></form>
+
             </div>
             <div class="card-footer text-muted">
                 Or choose a sample sheet music from <a href="#">here</a>.
@@ -62,58 +70,74 @@
         </nav>
     </section>
     <section id="pages">
-
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                <!--            page LISTEN -->
+                <!-- page LISTEN -->
                 <section class="page" id="page-listen">
-<!--                    <h2 class="page-title">Listen</h2>-->
+                    <!--                    <h2 class="page-title">Listen</h2>-->
                     <article id="audio-player">
                         <audio controls>
-                            <source src="viper.mp3" type="audio/mp3">
-                            <source src="viper.ogg" type="audio/ogg">
+<!--                            <source src="viper.mp3" type="audio/mp3">-->
+<!--                            <source src="viper.ogg" type="audio/ogg">-->
                             <p>Your browser doesn't support HTML5 audio. Here is a <a href="viper.mp3">link to the
                                 audio</a>
                                 instead.</p>
                         </audio>
                     </article>
-                    <article id="sheet-music-display">
-                        <img id="sheet" src="assets/sheet.jpg">
-                    </article>
                 </section>
             </div>
-            <!--            page LEARN -->
+            <!--   page LEARN -->
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                 <section class="page" id="page-learn">
-<!--                    <h2 class="page-title">Learn the Melody</h2>-->
+                    <!--                    <h2 class="page-title">Learn the Melody</h2>-->
                     <article id="notes">
                         <h3 id="init-song"></h3>
-                        <h3 id="crt-song">-</h3>
+                        <h3 id="crt-song"></h3>
                         <h1 id="note">-</h1>
                     </article>
-                        <article id="control-buttons">
-                            <button id="start" type="button" class="btn btn-outline-light"><h2>Start</h2></button>
-                            <button id="stop" type="button" class="btn btn-outline-dark"><h2>Stop</h2></button>
-                        </article>
-                        <article id="visualizer">
-                            <canvas id="canvas" width="300" height="100"></canvas>
-                        </article>
-                        <h1 id="congrats"> Congratulations! You sang the whole song!</h1>
+                    <article id="control-buttons">
+                        <button id="start" type="button" class="btn btn-outline-light"><h2>Start</h2></button>
+                        <button id="stop" type="button" class="btn btn-outline-dark"><h2>Stop</h2></button>
+                    </article>
+                    <article id="visualizer">
+                        <canvas id="canvas" width="300" height="100"></canvas>
+                    </article>
+                    <h1 id="congrats"> Congratulations! You sang the whole song!</h1>
+                </section>
+                <section id="kb">
+                    <h6>Help yourself! Get the reference notes when you are stuck.</h6>
+                    <div id="keyboard" class="keyboard-holder"></div>
+                    <script type="text/javascript">playKeyboard()</script>
                 </section>
             </div>
-            <!--            page MASTER -->
+            <!--  page MASTER -->
             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                 <section class="page" id="page-master">
-<!--                    <h2 class="page-title">Master it</h2>-->
+                    <!-- <h2 class="page-title">Master it</h2>-->
+
+                    <article id="master-controls">
+                        <form name="tempo-form">
+                            <label for="tempoInputId">Tempo</label>
+                            <output name="tempoOutputName" id="tempoOutputId">100</output>
+                            <input type="range" class="custom-range" name="tempoInputName" id="tempoInputId" value="100"
+                                   min="40" max="200" oninput="tempoOutputId.value = tempoInputId.value">
+                        </form>
+
+                        <button id="master-start" type="button" class="btn btn-outline-light"><h2>Start</h2></button>
+                        <button id="master-stop" type="button" class="btn btn-outline-dark"><h2>Stop</h2></button>
+                    </article>
+                    <article id="master-sheet-music">
+<!--                        <img class="sheet" src="assets/sheet.jpg">-->
+                    </article>
+
                 </section>
             </div>
         </div>
     </section>
-
-    <section id="kb">
-        <div ID="keyboard" class="keyboard-holder"></div>
-        <script type="text/javascript">playKeyboard()</script>
-    </section>
+    <article class="sheet-music-display">
+        <div class="sheet" id="div-sheet-music"></div>
+        <!--  <img class="sheet" src="assets/sheet.jpg">-->
+    </article>
 
 </main>
 <footer>
