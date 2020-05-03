@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6bfee6f-1c72-4c78-8f5f-8204c18eb8b4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/Ode_to_Joy.musicxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/opensheetmusicdisplay.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/opensheetmusicdisplay.min.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +108,7 @@
       <workItem from="1588259914764" duration="517000" />
       <workItem from="1588260457293" duration="20216000" />
       <workItem from="1588526432944" duration="1935000" />
-      <workItem from="1588530923635" duration="4901000" />
+      <workItem from="1588530923635" duration="5480000" />
     </task>
     <servers />
   </component>
