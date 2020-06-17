@@ -1,4 +1,4 @@
 # Master music
 
--> Proiect la Procesarea Datelor Audio Video
--> Proiect de licență
+Latest version here:
+https://github.com/EmmaDance/bachelors-thesis
